@@ -1,0 +1,12 @@
+@use '../utils/variables' as var;
+@import "~bootstrap/scss/bootstrap-grid";
+
+// overrides
+.container,
+.row {
+    --bs-gutter-x: 4rem;
+
+    @media (min-width: var.$lg) {
+        --bs-gutter-x: 4.8rem;
+    }
+}

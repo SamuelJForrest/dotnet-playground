@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+// font variables
+$font-family: "Poppins", sans-serif;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+
+// breakpoint variables
+$sm: 575px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1500px;
+
+// color variables
+$green: #007F5F;
+$green-dark: #05614A;
+$green-darkest: #081C15;
+$yellow: #FBB02D;
+$orange: #FF7324;
+$black: #131313;
+$white: #FCFCFC;
+
+// transition variables
+$slow: 1s;
+$mid: 0.5s;
+$fast: 0.3s;

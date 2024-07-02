@@ -1,0 +1,14 @@
+@use "../utils/variables" as var;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: var.$font-family;
+}
+
+a {
+    transition: all var.$fast;
+}

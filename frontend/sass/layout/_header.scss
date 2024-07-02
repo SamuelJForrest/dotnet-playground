@@ -1,0 +1,6 @@
+@use '../utils/variables' as var;
+
+.header {
+    background: var.$green;
+    padding: 2.4rem 0;
+}

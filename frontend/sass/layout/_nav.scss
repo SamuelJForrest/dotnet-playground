@@ -1,0 +1,36 @@
+@use '../utils/variables' as var;
+@use '../utils/mixins' as mixins;
+
+.nav {
+    &-wrap,
+    &-menu {
+        display: flex;
+        align-items: center;
+    }
+
+    &-item {
+        margin-left: 2.4rem;
+    }
+
+    &-logo,
+    &-link {
+        text-decoration: none;
+        color: var.$white;
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+            color: var.$yellow;
+        }
+    }
+
+    &-logo {
+        font-size: 3.2rem;
+        margin-right: auto;
+    }
+
+    &-link {
+        @include mixins.underline(var.$yellow);
+        padding-bottom: .3rem;
+    }
+}
