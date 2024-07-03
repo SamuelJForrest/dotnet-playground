@@ -1,0 +1,10 @@
+@use "../utils/variables" as var;
+
+.footer {
+	background: var.$green;
+	padding: 2rem 0;
+
+	&-text {
+		color: var.$white;
+	}
+}

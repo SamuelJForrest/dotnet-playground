@@ -4221,6 +4221,14 @@ a {
   background-size: 100% 2px;
 }
 
+.footer {
+  background: #007F5F;
+  padding: 2rem 0;
+}
+.footer-text {
+  color: #FCFCFC;
+}
+
 .home {
   padding: 2.4rem 0;
 }
