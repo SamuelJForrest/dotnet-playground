@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DotnetPlayground.Models;
 
 namespace DotnetPlayground.Data
 {
@@ -9,5 +10,6 @@ namespace DotnetPlayground.Data
             : base(options)
         {
         }
+        public DbSet<DotnetPlayground.Models.Blog> Blog { get; set; } = default!;
     }
 }
