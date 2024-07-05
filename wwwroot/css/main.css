@@ -4257,3 +4257,32 @@ a {
 .home a:hover, .home a:focus {
   background-size: 100% 2px;
 }
+
+.blog {
+  padding: 2.4rem 0;
+}
+@media (min-width: 992px) {
+  .blog {
+    padding: 4.8rem 0;
+  }
+}
+.blog h1,
+.blog h2,
+.blog h3,
+.blog h4,
+.blog h5,
+.blog h6,
+.blog p {
+  margin-bottom: 1.6rem;
+}
+.blog a {
+  background-image: linear-gradient(#FBB02D, #FBB02D);
+  background-size: 0 2px;
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  color: #FBB02D;
+  text-decoration: none;
+}
+.blog a:hover, .blog a:focus {
+  background-size: 100% 2px;
+}

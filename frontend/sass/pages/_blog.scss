@@ -1,0 +1,6 @@
+@use "../utils/mixins" as mix;
+
+.blog {
+	@include mix.sectionStyling;
+	@include mix.textContent;
+}
