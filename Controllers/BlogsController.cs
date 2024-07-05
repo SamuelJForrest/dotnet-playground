@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotnetPlayground.Data;
 using DotnetPlayground.Models;
+using DotnetPlayground.ViewModels;
 
 namespace DotnetPlayground.Controllers
 {
@@ -46,7 +47,13 @@ namespace DotnetPlayground.Controllers
         // GET: Blogs/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new BlogViewModel
+            {
+                Blog = new Blog(),
+                ColorOptions = new SelectList(new[] { "green", "orange", "yellow" })
+            };
+
+            return View(model);
         }
 
         // POST: Blogs/Create
@@ -54,15 +61,18 @@ namespace DotnetPlayground.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,CreatedDate,Author,Content")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,Title,CreatedDate,Author,Content")] BlogViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(blog);
+                _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(blog);
+
+            model.ColorOptions = new SelectList(new[] { "green", "orange", "yellow" });
+
+            return View(model);
         }
 
         // GET: Blogs/Edit/5
