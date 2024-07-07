@@ -30,7 +30,14 @@
     }
 
     &-link {
+        cursor: pointer;
+        background: none;
         @include mixins.underline(var.$yellow);
         padding-bottom: .3rem;
+        border: none;
+        padding: 0 0 .3rem;
+        font-size: 1.6rem;
+        font-family: var.$font-family;
+        transition: all var.$fast;
     }
 }

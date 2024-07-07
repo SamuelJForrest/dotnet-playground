@@ -6,9 +6,17 @@
 
 <section class="blog--listing">
     <h1 class="blog-title">Blog</h1>
-    <p class="mb-5">
-        <a asp-action="Create" class="button--green">Create New</a>
-    </p>
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <p class="mb-5">
+            <a asp-action="Create" class="button--green">Create New</a>
+        </p>
+    }
+    else
+    {
+        <p class="mb-5">Please log in to create your first blog entry!</p>
+    }
 
     <ul class="blog-list">
         @foreach (var item in Model)
@@ -18,8 +26,10 @@
                     <h3 class="blog-item-title">
                         <a asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
                     </h3>
-                    <span class="blog-item-date">@item.CreatedDate</span>
-                    <span class="blog-item-author">@item.Author</span>
+                    <div class="blog-item-info">
+                        <span class="blog-item-date">Written: @item.CreatedDate.ToString("dd MMMM yyyy")</span>
+                        <span class="blog-item-author">By: @item.Author</span>
+                    </div>
                 </article>
             </li>
         }

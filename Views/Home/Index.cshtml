@@ -3,6 +3,14 @@
 }
 
 <section class="home">
-    <h1>Welcome to the Dotnet Playground!</h1>
-    <p>This is a place to experiment with, and record your progress with, <a href="https://dotnet.microsoft.com/en-us/" target="_blank">dotnet!</a></p>
+    <h1>Dotnet Playground!</h1>
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <p>Welcome @(User.Identity.Name)! This is a place to experiment with, and record your progress with, <a href="https://dotnet.microsoft.com/en-us/" target="_blank">dotnet!</a></p>
+    }
+    else
+    {
+        <p>This is a place to experiment with, and record your progress with, <a href="https://dotnet.microsoft.com/en-us/" target="_blank">dotnet!</a></p>
+    }
 </section>

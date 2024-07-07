@@ -7,17 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotnetPlayground.Data;
 using DotnetPlayground.Models;
-using DotnetPlayground.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace DotnetPlayground.Controllers
 {
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public BlogsController(ApplicationDbContext context)
+        public BlogsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Blogs
@@ -47,13 +49,7 @@ namespace DotnetPlayground.Controllers
         // GET: Blogs/Create
         public IActionResult Create()
         {
-            var model = new BlogViewModel
-            {
-                Blog = new Blog(),
-                ColorOptions = new SelectList(new[] { "green", "orange", "yellow" })
-            };
-
-            return View(model);
+            return View();
         }
 
         // POST: Blogs/Create
@@ -61,18 +57,23 @@ namespace DotnetPlayground.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,CreatedDate,Author,Content")] BlogViewModel model)
+        public async Task<IActionResult> Create([Bind("Id,Title,CreatedDate,Author,Content")] Blog blog)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(model);
+                var user = await _userManager.GetUserAsync(User);
+                if (user != null)
+                {
+                    blog.Author = user?.UserName;
+                }
+                blog.CreatedDate = DateTime.Now;
+
+                _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
-            model.ColorOptions = new SelectList(new[] { "green", "orange", "yellow" });
-
-            return View(model);
+            return View(blog);
         }
 
         // GET: Blogs/Edit/5
@@ -88,6 +89,13 @@ namespace DotnetPlayground.Controllers
             {
                 return NotFound();
             }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (blog.Author != user?.UserName)
+            {
+                return Forbid();
+            }
+
             return View(blog);
         }
 
@@ -107,6 +115,12 @@ namespace DotnetPlayground.Controllers
             {
                 try
                 {
+                    var user = await _userManager.GetUserAsync(User);
+                    if (blog.Author != user?.UserName)
+                    {
+                        return Forbid();
+                    }
+
                     _context.Update(blog);
                     await _context.SaveChangesAsync();
                 }

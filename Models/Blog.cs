@@ -19,8 +19,5 @@ namespace DotnetPlayground.Models
 
         [StringLength((500), MinimumLength = 1)]
         public string? Content { get; set; }
-
-        [Display(Name = "Colour Modifier")]
-        public string? ColorModifier { get; set; }
     }
 }

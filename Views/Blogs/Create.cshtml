@@ -1,52 +1,36 @@
-﻿@model DotnetPlayground.ViewModels.BlogViewModel
+﻿@model DotnetPlayground.Models.Blog
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Blog</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Blog.Title" class="control-label"></label>
-                <input asp-for="Blog.Title" class="form-control" />
-                <span asp-validation-for="Blog.Title" class="text-danger"></span>
+    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+        <div class="blog--form">
+            <h1>New blog post</h1>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="button--green" />
+                </div>
+            </form>
+            <div class="mt-4 mt-lg-5">
+                <a asp-action="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="Blog.CreatedDate" class="control-label"></label>
-                <input asp-for="Blog.CreatedDate" class="form-control" />
-                <span asp-validation-for="Blog.CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Blog.Author" class="control-label"></label>
-                <input asp-for="Blog.Author" class="form-control" />
-                <span asp-validation-for="Blog.Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Blog.Content" class="control-label"></label>
-                <textarea asp-for="Blog.Content" class="form-control"></textarea>
-                <span asp-validation-for="Blog.Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Blog.ColorModifier" class="control-label"></label>
-                <select asp-for="Blog.ColorModifier" class="form-control" asp-items="Model.ColorOptions"></select>
-                <span asp-validation-for="Blog.ColorModifier" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
+    </div><!-- col -->
+</div><!-- row -->
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

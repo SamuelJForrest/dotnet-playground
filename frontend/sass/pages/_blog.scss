@@ -1,6 +1,17 @@
 @use "../utils/variables" as var;
 @use "../utils/mixins" as mix;
 
+@mixin setBlogItemStyles($backgroundColor, $textColor: var.$black) {
+	.blog-item {
+		background: $backgroundColor;
+		color: $textColor;
+
+		&-title a {
+			color: $textColor;
+		}
+	}
+}
+
 .blog {
 	@include mix.sectionStyling;
 
@@ -21,5 +32,70 @@
 			grid-template-columns: repeat(3, 1fr);
 			gap: 2.4rem;
 		}
+
+		>li {
+			display: flex;
+			flex-direction: column;
+
+			@media (min-width: var.$lg) {
+				&:nth-child(3n + 1) {
+					@include setBlogItemStyles(var.$green, var.$white);
+				}
+		
+				&:nth-child(3n + 2) {
+					@include setBlogItemStyles(var.$orange)
+				}
+		
+				&:nth-child(3n + 3) {
+					@include setBlogItemStyles(var.$yellow);
+				}
+			}
+		}
+	}
+
+	&-item {
+		position: relative;
+		padding: 20rem 2rem 2rem;
+		border-radius: 2.4rem;
+		transition: all var.$mid;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		flex: 1;
+
+		&:hover,
+		&:focus-within {
+			transform: translateY(-.8rem);
+		}
+
+		&-title {
+			margin-bottom: 1.2rem;
+
+			a {
+				text-decoration: none;
+				line-height: 1.2;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					border-radius: 2.4rem;
+				}
+			}
+		}
+
+		&-info {
+			display: flex;
+			flex-direction: column;
+			gap: .8rem;
+		}
+	}
+
+	&--form {
+		@extend .blog;
+		@include mix.textContent;
 	}
 }

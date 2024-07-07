@@ -5,10 +5,14 @@
 }
 
 .button {
+    cursor: pointer;
     padding: 1.2rem 1.6rem;
     display: inline-block;
     text-decoration: none;
     transition: all var.$fast;
+    border: none;
+    font-family: var.$font-family;
+    font-weight: var.$medium;
 
     &--green {
         @extend .button;
