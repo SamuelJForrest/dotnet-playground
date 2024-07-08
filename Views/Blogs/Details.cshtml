@@ -4,43 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<section class="blog--details">
+    <div class="container px-0">
+        <div class="row">
+            <div class="col-12">
+                <header class="blog--details-header">
+                    <h1>@Model.Title</h1>
+                    <a asp-action="Index">Back to List</a>
+                </header>
+            </div><!-- col -->
 
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-    </dl>
-</div>
-<div>
-    @if (User.Identity != null && User.Identity.Name == Model.Author)
-    {   
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit |</a>
-        <a asp-action="Delete" asp-route-id="@Model?.Id"> Delete |</a>
-    }
-    <a asp-action="Index">Back to List</a>
-</div>
+            <div class="col-lg-8">
+                <div class="blog--details-content">
+                    <p>@Model?.Content</p>
+                </div>
+            </div><!-- col -->
+
+            <div class="col-lg-3 offset-lg-1">
+                <div class="blog--details-sidebar">
+
+                    <div class="blog--details-sidebar-item">
+                        <strong>Created on:</strong>
+                        <time datetime="@Model?.CreatedDate">@Model?.CreatedDate.ToString("dd MMMM yyyy")</time>
+                    </div>
+
+                    @if (Model?.Author != null)
+                    {
+                        <div class="blog--details-sidebar-item">
+                            <strong>Written by:</strong>
+                            <p>@Model.Author</p>
+                        </div>
+                    }
+
+
+                    @if (User.Identity != null && User.Identity.Name == Model?.Author)
+                    {
+                        <div class="blog--details-sidebar-item">
+                            <strong>Update:</strong>
+                            <div>
+                                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+                                <span>|</span>
+                                <a asp-action="Delete" asp-route-id="@Model?.Id"> Delete</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
