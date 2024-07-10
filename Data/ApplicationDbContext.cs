@@ -11,5 +11,6 @@ namespace DotnetPlayground.Data
         {
         }
         public DbSet<DotnetPlayground.Models.Blog> Blog { get; set; } = default!;
+        public DbSet<TaskItem> TaskItems { get; set; }
     }
 }
