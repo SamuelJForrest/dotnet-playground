@@ -1,0 +1,16 @@
+@use "../utils/variables" as var;
+
+.table {
+    width: 100%;
+
+    th {
+        text-align: left;
+        background: var.$green;
+        color: var.$white;
+        padding: 1.2rem 1.6rem;
+    }
+
+    td {
+        padding: 1.6rem;
+    }
+}

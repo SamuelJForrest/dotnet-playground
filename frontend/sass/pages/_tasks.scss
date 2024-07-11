@@ -1,0 +1,8 @@
+@use "../utils/mixins" as mix;
+
+.tasks {
+    &--listing {
+        @include mix.sectionStyling;
+        @include mix.textContent;
+    }
+}

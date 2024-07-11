@@ -4,43 +4,53 @@
     ViewData["Title"] = "Task List";
 }
 
-<h2>Task List</h2>
+<section class="tasks--listing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3 ps-lg-0">
+                <h2>Task List</h2>
 
-<form asp-action="AddTask" method="post">
-    <div class="form-group">
-        <label for="NewTask_Description">New Task</label>
-        <input type="text" class="form-control" id="NewTask_Description" name="NewTask.Description" required />
-    </div>
-    <button type="submit" class="btn btn-primary">Add Task</button>
-</form>
+                <form asp-action="AddTask" method="post">
+                    <div class="form-group">
+                        <label for="NewTask_Description">New Task</label>
+                        <input type="text" class="form-control" id="NewTask_Description" name="NewTask.Description" required />
+                    </div>
+                    <button type="submit" class="button--green">Add Task</button>
+                </form>
+            </div><!-- col -->
 
-<table class="table mt-4">
-    <thead>
-        <tr>
-            <th>Description</th>
-            <th>Complete</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var task in Model.Tasks)
-        {
-            <tr>
-                <td>@task.Description</td>
-                <td>
-                    <form asp-action="ToggleComplete" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@task.Id" />
-                        <button type="submit" class="btn btn-link">(@task.IsComplete ? "Undo" : "Complete")</button>
-                    </form>
-                </td>
-                <td>
-                    <form asp-action="DeleteTask" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@task.Id" />
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <div class="col-md-7 col-lg-8 offset-md-1">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Complete</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in Model.Tasks)
+                        {
+                            <tr>
+                                <td>@task.Description</td>
+                                <td>
+                                    <form asp-action="ToggleComplete" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@task.Id" />
+                                        <button type="submit" class="btn btn-link">(@task.IsComplete ? "Undo" : "Complete")</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form asp-action="DeleteTask" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@task.Id" />
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
 
