@@ -3,14 +3,30 @@
 .table {
     width: 100%;
 
+    tr {
+        &:nth-child(odd) {
+            background: lighten(var.$grey, 7.5%);
+        }
+
+        &:nth-child(even) {
+            background: lighten(var.$grey, 10%);
+        }
+    }
+
+    th,
+    td {
+        vertical-align: middle;
+    }
+
     th {
         text-align: left;
         background: var.$green;
         color: var.$white;
-        padding: 1.2rem 1.6rem;
+        padding: 2rem 1.6rem;
     }
 
     td {
         padding: 1.6rem;
+        line-height: 1.5;
     }
 }

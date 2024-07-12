@@ -1,0 +1,6 @@
+@mixin iconStyling($width: 20px, $height: 20px, $fillColor)
+{
+    width: $width;
+    height: $height;
+    fill: $fillColor;
+}

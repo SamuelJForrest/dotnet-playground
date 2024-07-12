@@ -10,13 +10,20 @@
             <div class="col-md-4 col-lg-3 ps-lg-0">
                 <h2>Task List</h2>
 
-                <form asp-action="AddTask" method="post">
-                    <div class="form-group">
-                        <label for="NewTask_Description">New Task</label>
-                        <input type="text" class="form-control" id="NewTask_Description" name="NewTask.Description" required />
-                    </div>
-                    <button type="submit" class="button--green">Add Task</button>
-                </form>
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <form asp-action="AddTask" method="post">
+                        <div class="form-group">
+                            <label for="NewTask_Description">New Task</label>
+                            <input type="text" class="form-control" id="NewTask_Description" name="NewTask.Description" required />
+                        </div>
+                        <button type="submit" class="button--green">Add Task</button>
+                    </form>
+                }
+                else
+                {
+                    <p>This task list provides an overview of important tasks and their current status.</p>
+                }
             </div><!-- col -->
 
             <div class="col-md-7 col-lg-8 offset-md-1">
@@ -32,17 +39,29 @@
                         @foreach (var task in Model.Tasks)
                         {
                             <tr>
-                                <td>@task.Description</td>
+                                <td>
+                                    @if (task.IsComplete)
+                                    {
+                                        <s>@task.Description</s>
+                                    }
+                                    else
+                                    {   
+                                        @task.Description
+                                    }
+                                </td>
                                 <td>
                                     <form asp-action="ToggleComplete" method="post" style="display:inline;">
                                         <input type="hidden" name="id" value="@task.Id" />
-                                        <button type="submit" class="btn btn-link">(@task.IsComplete ? "Undo" : "Complete")</button>
+                                        <button type="submit" class="button--green">@(task.IsComplete ? "Undo" : "Complete")</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form asp-action="DeleteTask" method="post" style="display:inline;">
                                         <input type="hidden" name="id" value="@task.Id" />
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="button--red">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" preserveAspectRatio="xMidYMid"><path d="M13 3a1 1 0 0 0-1.014 1H6a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2h-5.986A1 1 0 0 0 17 3h-4zM6 8v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8H6z" /></svg>
+                                            <span class="visually-hidden">Delete</span>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

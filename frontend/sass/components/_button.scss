@@ -1,4 +1,5 @@
 @use '../utils/variables' as var;
+@use '../base/icons';
 
 @mixin buttonHover($color) {
     box-shadow: inset 0 -5px 0px 0px $color;
@@ -7,12 +8,19 @@
 .button {
     cursor: pointer;
     padding: 1.2rem 1.6rem;
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     transition: all var.$fast;
     border: none;
     font-family: var.$font-family;
     font-weight: var.$medium;
+    font-size: 1.6rem;
+
+    &:has(svg) {
+        padding: 1.2rem;
+    }
 
     &--green {
         @extend .button;
@@ -23,5 +31,20 @@
         &:focus {
             @include buttonHover(var.$green);
         }
+    }
+
+    &--red {
+        @extend .button;
+        background: var.$red;
+        color: var.$white;
+
+        &:hover,
+        &:focus {
+            @include buttonHover(darken(var.$red, 25%));
+        }
+    }
+
+    > svg {
+        @include icons.iconStyling($fillColor: var.$white);
     }
 }
