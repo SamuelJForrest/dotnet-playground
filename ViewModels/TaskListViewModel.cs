@@ -7,5 +7,6 @@ namespace DotnetPlayground.ViewModels
     {
         public List<TaskItem> Tasks { get; set; } = new List<TaskItem>();
         public TaskItem NewTask { get; set; } = new TaskItem();
+        public string? SearchString { get; set; }
     }
 }

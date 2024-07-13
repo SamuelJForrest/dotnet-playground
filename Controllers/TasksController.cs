@@ -15,11 +15,19 @@ namespace DotnetPlayground.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            IQueryable<TaskItem> tasksQuery = _context.TaskItems;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tasksQuery = tasksQuery.Where(t => t.Description.Contains(searchString));
+            }
+
             var viewModel = new TaskListViewModel
             {
-                Tasks = _context.TaskItems.OrderBy(t => t.IsComplete).ToList()
+                Tasks = tasksQuery.OrderBy(t => t.IsComplete).ToList(),
+                SearchString = searchString
             };
             return View(viewModel);
         }

@@ -27,6 +27,11 @@
         background: var.$grey;
         color: var.$black;
 
+        >svg,
+        >svg path {
+            fill: var.$black;
+        }
+
         &:hover,
         &:focus {
             @include buttonHover(var.$green);
