@@ -4272,6 +4272,9 @@ textarea {
 .table tr:nth-child(even) {
   background: #fafafa;
 }
+.table tr.__completed s {
+  opacity: 0.3;
+}
 .table th,
 .table td {
   vertical-align: middle;

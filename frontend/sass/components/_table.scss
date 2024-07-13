@@ -11,6 +11,12 @@
         &:nth-child(even) {
             background: lighten(var.$grey, 10%);
         }
+
+        &.__completed {
+            s {
+                opacity: 0.3;
+            }
+        }
     }
 
     th,

@@ -19,7 +19,7 @@ namespace DotnetPlayground.Controllers
         {
             var viewModel = new TaskListViewModel
             {
-                Tasks = _context.TaskItems.ToList()
+                Tasks = _context.TaskItems.OrderBy(t => t.IsComplete).ToList()
             };
             return View(viewModel);
         }

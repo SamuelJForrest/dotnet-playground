@@ -38,7 +38,7 @@
                     <tbody>
                         @foreach (var task in Model.Tasks)
                         {
-                            <tr>
+                            <tr class="@(task.IsComplete ? "__completed" : "")">
                                 <td>
                                     @if (task.IsComplete)
                                     {

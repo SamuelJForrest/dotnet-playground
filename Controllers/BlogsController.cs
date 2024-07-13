@@ -25,7 +25,7 @@ namespace DotnetPlayground.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Blog.ToListAsync());
+            return View(await _context.Blog.OrderByDescending(b => b.CreatedDate).ToListAsync());
         }
 
         // GET: Blogs/Details/5
