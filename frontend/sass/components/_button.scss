@@ -17,6 +17,13 @@
     font-family: var.$font-family;
     font-weight: var.$medium;
     font-size: 1.6rem;
+    background: var.$grey;
+    color: var.$black;
+
+    >svg,
+    >svg path {
+        @include icons.iconStyling($fillColor: var.$black);
+    }
 
     &:has(svg) {
         padding: 1.2rem;
@@ -24,17 +31,19 @@
 
     &--green {
         @extend .button;
-        background: var.$grey;
-        color: var.$black;
-
-        >svg,
-        >svg path {
-            fill: var.$black;
-        }
-
+        
         &:hover,
         &:focus {
             @include buttonHover(var.$green);
+        }
+    }
+
+    &--yellow {
+        @extend .button;
+        
+        &:hover,
+        &:focus {
+            @include buttonHover(var.$yellow);
         }
     }
 
@@ -43,13 +52,14 @@
         background: var.$red;
         color: var.$white;
 
+        >svg,
+        >svg path {
+            @include icons.iconStyling($fillColor: var.$white);
+        }
+
         &:hover,
         &:focus {
             @include buttonHover(darken(var.$red, 25%));
         }
-    }
-
-    > svg {
-        @include icons.iconStyling($fillColor: var.$white);
     }
 }

@@ -4199,7 +4199,7 @@ a {
   }
 }
 
-.button, .button--red, .button--green {
+.button, .button--red, .button--yellow, .button--green {
   cursor: pointer;
   padding: 1.2rem 1.6rem;
   display: inline-flex;
@@ -4211,32 +4211,39 @@ a {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
-}
-.button:has(svg), .button--red:has(svg), .button--green:has(svg) {
-  padding: 1.2rem;
-}
-.button--green {
   background: #e0e0e0;
   color: #131313;
 }
-.button--green > svg,
+.button > svg, .button--red > svg, .button--yellow > svg, .button--green > svg,
+.button > svg path,
+.button--red > svg path,
+.button--yellow > svg path,
 .button--green > svg path {
+  width: 20px;
+  height: 20px;
   fill: #131313;
+}
+.button:has(svg), .button--red:has(svg), .button--yellow:has(svg), .button--green:has(svg) {
+  padding: 1.2rem;
 }
 .button--green:hover, .button--green:focus {
   box-shadow: inset 0 -5px 0px 0px #007F5F;
+}
+.button--yellow:hover, .button--yellow:focus {
+  box-shadow: inset 0 -5px 0px 0px #FBB02D;
 }
 .button--red {
   background: #EF4444;
   color: #FCFCFC;
 }
-.button--red:hover, .button--red:focus {
-  box-shadow: inset 0 -5px 0px 0px #a50e0e;
-}
-.button > svg, .button--green > svg, .button--red > svg {
+.button--red > svg,
+.button--red > svg path {
   width: 20px;
   height: 20px;
   fill: #FCFCFC;
+}
+.button--red:hover, .button--red:focus {
+  box-shadow: inset 0 -5px 0px 0px #a50e0e;
 }
 
 .form-group {
