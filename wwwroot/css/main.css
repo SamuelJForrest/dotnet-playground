@@ -4554,3 +4554,8 @@ textarea {
 .tasks-search .form-group {
   flex: 1;
 }
+.tasks-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}

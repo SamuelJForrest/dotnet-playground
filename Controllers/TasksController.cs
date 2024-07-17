@@ -3,6 +3,8 @@ using DotnetPlayground.Models;
 using DotnetPlayground.ViewModels;
 using DotnetPlayground.Data;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetPlayground.Controllers
 {
@@ -41,6 +43,23 @@ namespace DotnetPlayground.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> EditTask(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var task = await _context.TaskItems.FindAsync(id);
+
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            return View(task);
         }
 
         [HttpPost]
